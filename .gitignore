@@ -1,0 +1,14 @@
+# Dependencias
+node_modules
+
+# Archivos de entorno
+.env
+.env.*
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Base de datos de prueba de Prisma
+prisma/test.db
