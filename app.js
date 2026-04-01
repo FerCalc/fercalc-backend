@@ -26,8 +26,9 @@ app.use(morgan('dev'));
 app.use(express.json());
 app.use(cookieParser());
 
-// ✅ Rutas con prefijos correctos
+// ✅ /api/auth + /register = /api/auth/register
 app.use('/api/auth', authRoutes);
-app.use('/api/tasks', taskRoutes);
+// ✅ /api + /tasks = /api/tasks
+app.use('/api', taskRoutes);
 
 export default app;
