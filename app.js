@@ -5,10 +5,10 @@ import cookieParser from 'cookie-parser';
 import cors from 'cors';
 
 import authRoutes from './src/routes/auth.routes.js';
+import taskRoutes from './src/routes/task.routes.js';
 
 const app = express();
 
-// ✅ Opciones de CORS definidas una sola vez
 const corsOptions = {
     origin: [
         'http://localhost:5173',
@@ -19,16 +19,15 @@ const corsOptions = {
     allowedHeaders: ['Content-Type', 'Authorization']
 };
 
-// ✅ Aplicar CORS a todas las rutas
 app.use(cors(corsOptions));
-
-// ✅ Responder explícitamente a las peticiones preflight OPTIONS
 app.options('*', cors(corsOptions));
 
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(cookieParser());
 
-app.use("/api/auth", authRoutes);
+// ✅ Rutas con prefijos correctos
+app.use('/api/auth', authRoutes);
+app.use('/api/tasks', taskRoutes);
 
 export default app;
