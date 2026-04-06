@@ -1,27 +1,34 @@
-// src/models/user.model.js (CORREGIDO PARA ES MODULES)
+// src/models/user.model.js
 
-import mongoose from 'mongoose'; // Usamos import
+import mongoose from 'mongoose';
 
-// Definición del esquema (la estructura) para un usuario
 const userSchema = new mongoose.Schema({
-  username: {
-    type: String,
-    required: true,
-    trim: true, // Elimina espacios en blanco al principio y al final
-  },
-  email: {
-    type: String,
-    required: true,
-    trim: true,
-    unique: true, // Asegura que no haya dos usuarios con el mismo email
-  },
-  password: {
-    type: String,
-    required: true,
-  },
+    username: {
+        type: String,
+        required: true,
+        trim: true,
+    },
+    email: {
+        type: String,
+        required: true,
+        trim: true,
+        unique: true,
+        lowercase: true,
+    },
+    password: {
+        type: String,
+        required: true,
+    },
+    // ── Rol del usuario ──
+    // 'user'  → socio APEN con acceso normal
+    // 'admin' → puede gestionar el panel de correos APEN
+    role: {
+        type: String,
+        enum: ['user', 'admin'],
+        default: 'user',
+    },
 }, {
-  timestamps: true, // Crea automáticamente los campos createdAt y updatedAt
+    timestamps: true,
 });
 
-// Exportamos el modelo usando 'export default'
 export default mongoose.model('User', userSchema);

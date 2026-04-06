@@ -6,6 +6,7 @@ import cors from 'cors';
 
 import authRoutes from './src/routes/auth.routes.js';
 import taskRoutes from './src/routes/task.routes.js';
+import adminRoutes from './src/routes/admin.routes.js';
 
 const app = express();
 
@@ -26,9 +27,8 @@ app.use(morgan('dev'));
 app.use(express.json());
 app.use(cookieParser());
 
-// ✅ /api/auth + /register = /api/auth/register
 app.use('/api/auth', authRoutes);
-// ✅ /api + /tasks = /api/tasks
 app.use('/api', taskRoutes);
+app.use('/api/admin', adminRoutes); // ← Panel de administración APEN
 
 export default app;
