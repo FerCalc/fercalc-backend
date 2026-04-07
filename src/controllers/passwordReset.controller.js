@@ -38,7 +38,7 @@ export const requestPasswordReset = async (req, res) => {
 
         // Enviar email con Resend
         await resend.emails.send({
-            from: 'FerCalc <noreply@tudominio.com>', // ← Cambiá por tu dominio verificado en Resend
+            from: 'FerCalc <onboarding@resend.dev>', // ← Cambiá por tu dominio verificado en Resend
             to: user.email,
             subject: 'Restablecé tu contraseña — FerCalc',
             html: `
