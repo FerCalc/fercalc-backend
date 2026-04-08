@@ -19,13 +19,20 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    // ── Rol del usuario ──
-    // 'user'  → socio APEN con acceso normal
-    // 'admin' → puede gestionar el panel de correos APEN
     role: {
         type: String,
         enum: ['user', 'admin'],
         default: 'user',
+    },
+    // ── Sesión única: solo el último token emitido es válido ──
+    currentToken: {
+        type: String,
+        default: null,
+    },
+    // ── Para limitar cambios de nombre de usuario ──
+    usernameChangedAt: {
+        type: Date,
+        default: null,
     },
 }, {
     timestamps: true,
