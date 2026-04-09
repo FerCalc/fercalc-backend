@@ -7,6 +7,7 @@ import cors from 'cors';
 import authRoutes from './src/routes/auth.routes.js';
 import taskRoutes from './src/routes/task.routes.js';
 import adminRoutes from './src/routes/admin.routes.js';
+import profileRoutes from './src/routes/profile.routes.js';
 
 const app = express();
 
@@ -22,13 +23,13 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.options('*', cors(corsOptions));
-
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(cookieParser());
 
-app.use('/api/auth', authRoutes);
-app.use('/api', taskRoutes);
-app.use('/api/admin', adminRoutes); // ← Panel de administración APEN
+app.use('/api/auth',    authRoutes);
+app.use('/api',         taskRoutes);
+app.use('/api/admin',   adminRoutes);
+app.use('/api/profile', profileRoutes);  // ← Perfil de usuario
 
 export default app;
